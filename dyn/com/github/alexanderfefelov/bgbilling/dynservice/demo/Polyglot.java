@@ -66,7 +66,7 @@ public class Polyglot {
         Polyglot polyglot = new Polyglot();
         for (Map.Entry<Language, String> entry : sources.entrySet()) {
             Value function = polyglot.eval(entry.getKey(), new File(entry.getValue()), TIMEOUT);
-            System.out.println(function.execute("World").asString());
+            System.out.println(function.execute(entry.getKey().language).asString());
         }
     }
 
