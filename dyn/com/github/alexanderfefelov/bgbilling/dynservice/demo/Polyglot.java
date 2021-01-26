@@ -4,8 +4,6 @@ import org.graalvm.polyglot.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -56,20 +54,5 @@ public class Polyglot {
         private final String language;
 
     }
-
-    public static void main(String[] args) throws IOException {
-        Map<Language, String> sources = new HashMap<Language, String>() {{
-            put(Language.JS, "dyn/com/github/alexanderfefelov/bgbilling/dynservice/demo/Hello.js");
-            put(Language.PYTHON, "dyn/com/github/alexanderfefelov/bgbilling/dynservice/demo/Hello.py");
-            put(Language.RUBY, "dyn/com/github/alexanderfefelov/bgbilling/dynservice/demo/Hello.rb");
-        }};
-        Polyglot polyglot = new Polyglot();
-        for (Map.Entry<Language, String> entry : sources.entrySet()) {
-            Value function = polyglot.eval(entry.getKey(), new File(entry.getValue()), TIMEOUT);
-            System.out.println(function.execute(entry.getKey().language).asString());
-        }
-    }
-
-    private static final int TIMEOUT = 10 * 1000;
 
 }
